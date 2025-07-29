@@ -83,8 +83,15 @@ async def on_message(message):
     await bot.process_commands(message)
 
 # --- התחלת הבוט ---
-with open("token.txt") as f:
-    token = f.read().strip()
+import os
 
-bot.run(token)
+token = os.getenv("TOKEN")
+if not token:
+    print("❌ לא נמצא טוקן. ודאי שהוספת Environment Variable בשם 'TOKEN'.")
+else:
+    bot.run(token)
+
+
+
+
 
